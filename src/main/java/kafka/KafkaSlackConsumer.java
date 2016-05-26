@@ -35,7 +35,7 @@ public class KafkaSlackConsumer {
                 for (ConsumerRecord<String, String> record : records) {
                     String jsonData = record.value();
                     SlackMessage slackMessage = unmarshallSlackJson(jsonData);
-                    slackMessageService.createSlackMessageNode(slackMessage);
+                    slackMessageService.interpretSlackMessage(slackMessage);
                 }
             }
         } finally {

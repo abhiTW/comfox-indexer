@@ -35,5 +35,6 @@ public class JigsawAssignmentService extends GraphService {
                 "staffingRequest", assignment.getStaffingRequest(), "effort", assignment.getEffort(),
                 "shadow", assignment.getShadow(), "accountName", assignment.getAccount(),
                 "startsOn", assignment.getDuration().getStartsOn(), "endsOn", assignment.getDuration().getEndsOn());
+        titanGraph.tx().commit();
     }
 }

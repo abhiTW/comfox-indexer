@@ -9,7 +9,6 @@ import model.jigsaw.Person;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.net.URISyntaxException;
-import java.util.Collection;
 import java.util.List;
 
 public class JigsawCrawler {
@@ -23,22 +22,24 @@ public class JigsawCrawler {
 
     public List<Person> getJigsawPeopleData() throws IOException, URISyntaxException {
         String peopleJson = jigsawHttpClient.getPeopleWithWorkingOffice("Chennai");
-        return unmarshallJigsawPeopleData(peopleJson);
+        return unmarshallingJigsawPeopleData(peopleJson);
     }
 
     public List<Assignment> getJigsawAssignmentsData() throws IOException, URISyntaxException {
         String assignmentsJson = jigsawHttpClient.getAssignments();
-        return unmarshallJigsawAssignmentsData(assignmentsJson);
+        return unmarshallingJigsawAssignmentsData(assignmentsJson);
     }
 
-    private List<Person> unmarshallJigsawPeopleData(String peopleJson) {
-        Type collectionType = new TypeToken<List<Person>>() {}.getType();
+    private List<Person> unmarshallingJigsawPeopleData(String peopleJson) {
+        Type collectionType = new TypeToken<List<Person>>() {
+        }.getType();
         List<Person> people = gson.fromJson(peopleJson, collectionType);
         return people;
     }
 
-    private List<Assignment> unmarshallJigsawAssignmentsData(String assignmentsJson) {
-        Type collectionType = new TypeToken<List<Assignment>>() {}.getType();
+    private List<Assignment> unmarshallingJigsawAssignmentsData(String assignmentsJson) {
+        Type collectionType = new TypeToken<List<Assignment>>() {
+        }.getType();
         List<Assignment> assignments = gson.fromJson(assignmentsJson, collectionType);
         return assignments;
     }
